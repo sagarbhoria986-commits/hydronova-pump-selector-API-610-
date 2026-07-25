@@ -800,7 +800,9 @@
                 <option>Slurry</option>
                 <option>Chemical Solution</option>
                 <option>Custom Fluid</option>
-
+                <option>Thermal Oil</option>
+                <option>Hot Oil</option>
+                <option>Heat Transfer Fluid</option>
             </select>
 
         </div>
@@ -1022,6 +1024,13 @@
         Next : Material Selection
 
     </button>
+<button id="recommendPumpBtn">
+
+    <i class="fa-solid fa-pump-soap"></i>
+
+    Recommend Pump
+
+</button>
 
 </div>
 
@@ -1731,8 +1740,130 @@
             <h2 id="specificDiameter">0</h2>
 
         </div>
+<div class="calc-card">
+
+    <h4>Suction Pipe Size</h4>
+
+    <h2 id="suctionPipeSize">DN100</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Discharge Pipe Size</h4>
+
+    <h2 id="dischargePipeSize">DN80</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Estimated Impeller Diameter</h4>
+
+    <h2 id="impellerDiameter">0 mm</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Estimated Shaft Diameter</h4>
+
+    <h2 id="shaftDiameter">0 mm</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Recommended Motor Frame</h4>
+
+    <h2 id="motorFrame">--</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Operating Region</h4>
+
+    <h2 id="operatingRegion">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Operating Status</h4>
+
+    <h2 id="operatingStatus">--</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Current RPM</h4>
+
+    <h2 id="currentRPM">2900 RPM</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Flow</h4>
+
+    <h2 id="predictedFlow">0.00 m³/hr</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Head</h4>
+
+    <h2 id="predictedHead">0.00 m</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Power</h4>
+
+    <h2 id="predictedPower">0.00 kW</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Engineering Score</h4>
+
+    <h2 id="engineeringScore">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>API 610 Grade</h4>
+
+    <h2 id="engineeringGrade">--</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Reliability Index</h4>
+
+    <h2 id="reliabilityIndex">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Energy Rating</h4>
+
+    <h2 id="energyRating">--</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Overall Status</h4>
+
+    <h2 id="overallStatus">--</h2>
+
+</div>
 
     </div>
+
 
     <!-- ================= Engineering Status ================= -->
 
@@ -2076,6 +2207,80 @@
 
 </section>
 <!-- ====================================================== -->
+<!-- API 610 COMPLIANCE -->
+<!-- ====================================================== -->
+
+<section id="api610" class="api-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-circle-check"></i>
+            API 610 Compliance Check
+        </h2>
+
+        <p>
+            Automatic verification of selected pump with API 610 requirements.
+        </p>
+
+    </div>
+
+    <div class="calculation-grid">
+
+        <div class="calc-card">
+            <h4>Compliance Score</h4>
+            <h2 id="apiScore">0 %</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Overall Status</h4>
+            <h2 id="apiStatus">Pending</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Pump Category</h4>
+            <h2 id="apiPumpType">--</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Standard</h4>
+            <h2>API 610</h2>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- PUMP PERFORMANCE CURVES -->
+<!-- ====================================================== -->
+
+<section id="pumpCurve" class="curve-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-chart-line"></i>
+            Pump Performance Curves
+        </h2>
+
+        <p>
+            Hydraulic Performance Curve generated according to the selected API 610 pump.
+        </p>
+
+    </div>
+
+    <div class="curve-container">
+
+        <canvas id="pumpChart"></canvas>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
 <!-- FINAL REPORT -->
 <!-- ====================================================== -->
 
@@ -2385,6 +2590,10 @@
 
 </div>
 
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- HydroNova JavaScript -->
 <script src="script.js"></script>
 
 </body>
