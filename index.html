@@ -277,6 +277,18 @@
 
                 <li>
 
+                    <a href="#duty-point">
+
+                        <i class="fa-solid fa-bullseye"></i>
+
+                        <span>Duty Point</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
                     <a href="#database">
 
                         <i class="fa-solid fa-database"></i>
@@ -800,7 +812,9 @@
                 <option>Slurry</option>
                 <option>Chemical Solution</option>
                 <option>Custom Fluid</option>
-
+                <option>Thermal Oil</option>
+                <option>Hot Oil</option>
+                <option>Heat Transfer Fluid</option>
             </select>
 
         </div>
@@ -1022,6 +1036,13 @@
         Next : Material Selection
 
     </button>
+<button id="recommendPumpBtn">
+
+    <i class="fa-solid fa-pump-soap"></i>
+
+    Recommend Pump
+
+</button>
 
 </div>
 
@@ -1415,7 +1436,42 @@
 
             </p>
 
+            <!-- Match Score -->
+
+            <div class="match-score-box">
+
+                <div class="match-score-label">
+
+                    <span>Engineering Match Score</span>
+                    <span id="matchScoreValue">0%</span>
+
+                </div>
+
+                <div class="match-score-bar">
+
+                    <div id="matchScoreFill" class="match-score-fill" style="width:0%;"></div>
+
+                </div>
+
+            </div>
+
         </div>
+
+    </div>
+
+    <!-- ================= SELECTION REASONING ================= -->
+
+    <div class="selection-reasoning">
+
+        <h3>
+            Why This Pump Was Recommended
+        </h3>
+
+        <ul id="selectionReasonList">
+
+            <li>Enter operating conditions to generate a recommendation.</li>
+
+        </ul>
 
     </div>
 
@@ -1563,7 +1619,7 @@
 
         </h3>
 
-        <table>
+        <table class="alt-pumps-table">
 
             <thead>
 
@@ -1571,7 +1627,7 @@
 
                     <th>Pump</th>
 
-                    <th>Efficiency</th>
+                    <th>Match Score</th>
 
                     <th>Suitability</th>
 
@@ -1579,35 +1635,11 @@
 
             </thead>
 
-            <tbody>
+            <tbody id="alternativePumpsBody">
 
                 <tr>
 
-                    <td>OH1</td>
-
-                    <td>80%</td>
-
-                    <td>Good</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>OH2</td>
-
-                    <td>82%</td>
-
-                    <td>Best</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>BB2</td>
-
-                    <td>85%</td>
-
-                    <td>Optional</td>
+                    <td colspan="3">Enter operating conditions to compare alternatives.</td>
 
                 </tr>
 
@@ -1731,8 +1763,130 @@
             <h2 id="specificDiameter">0</h2>
 
         </div>
+<div class="calc-card">
+
+    <h4>Suction Pipe Size</h4>
+
+    <h2 id="suctionPipeSize">DN100</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Discharge Pipe Size</h4>
+
+    <h2 id="dischargePipeSize">DN80</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Estimated Impeller Diameter</h4>
+
+    <h2 id="impellerDiameter">0 mm</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Estimated Shaft Diameter</h4>
+
+    <h2 id="shaftDiameter">0 mm</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Recommended Motor Frame</h4>
+
+    <h2 id="motorFrame">--</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Operating Region</h4>
+
+    <h2 id="operatingRegion">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Operating Status</h4>
+
+    <h2 id="operatingStatus">--</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Current RPM</h4>
+
+    <h2 id="currentRPM">2900 RPM</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Flow</h4>
+
+    <h2 id="predictedFlow">0.00 m³/hr</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Head</h4>
+
+    <h2 id="predictedHead">0.00 m</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Predicted Power</h4>
+
+    <h2 id="predictedPower">0.00 kW</h2>
+
+</div>
+<div class="calc-card">
+
+    <h4>Engineering Score</h4>
+
+    <h2 id="engineeringScore">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>API 610 Grade</h4>
+
+    <h2 id="engineeringGrade">--</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Reliability Index</h4>
+
+    <h2 id="reliabilityIndex">0 %</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Energy Rating</h4>
+
+    <h2 id="energyRating">--</h2>
+
+</div>
+
+<div class="calc-card">
+
+    <h4>Overall Status</h4>
+
+    <h2 id="overallStatus">--</h2>
+
+</div>
 
     </div>
+
 
     <!-- ================= Engineering Status ================= -->
 
@@ -2076,6 +2230,209 @@
 
 </section>
 <!-- ====================================================== -->
+<!-- API 610 COMPLIANCE -->
+<!-- ====================================================== -->
+
+<section id="api610" class="api-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-circle-check"></i>
+            API 610 Compliance Check
+        </h2>
+
+        <p>
+            Automatic verification of selected pump with API 610 requirements.
+        </p>
+
+    </div>
+
+    <div class="calculation-grid">
+
+        <div class="calc-card">
+            <h4>Compliance Score</h4>
+            <h2 id="apiScore">0 %</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Overall Status</h4>
+            <h2 id="apiStatus">Pending</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Pump Category</h4>
+            <h2 id="apiPumpType">--</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Standard</h4>
+            <h2>API 610</h2>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- PUMP PERFORMANCE CURVES -->
+<!-- ====================================================== -->
+
+<section id="pump-curves" class="curve-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-chart-line"></i>
+            Pump Performance Curves
+        </h2>
+
+        <p>
+            Hydraulic Performance Curve generated according to the selected API 610 pump.
+        </p>
+
+    </div>
+
+    <div class="curve-container">
+
+        <canvas id="pumpChart"></canvas>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- DUTY POINT ANALYSIS -->
+<!-- ====================================================== -->
+
+<section id="duty-point" class="engineering-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-bullseye"></i>
+            Duty Point Analysis
+        </h2>
+
+        <p>
+            Locates the specified duty point on the pump curve and verifies
+            it against API 610 / Hydraulic Institute operating-region and
+            NPSH margin guidelines.
+        </p>
+
+    </div>
+
+    <div class="calculation-grid">
+
+        <div class="calc-card">
+            <h4>Duty Flow</h4>
+            <h2 id="dutyFlowVal">-- m&sup3;/hr</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Duty Head</h4>
+            <h2 id="dutyHeadVal">-- m</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>BEP Flow</h4>
+            <h2 id="bepFlowVal">-- m&sup3;/hr</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>% of BEP Flow</h4>
+            <h2 id="percentBEPVal">-- %</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Predicted Head @ Duty</h4>
+            <h2 id="predictedHeadVal">-- m</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Head Deviation</h4>
+            <h2 id="headDeviationVal">-- %</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Predicted Efficiency @ Duty</h4>
+            <h2 id="predictedEfficiencyVal">-- %</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>Predicted Power @ Duty</h4>
+            <h2 id="predictedPowerVal">-- kW</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>NPSH Available</h4>
+            <h2 id="npshaVal">-- m</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>NPSH Required @ Duty</h4>
+            <h2 id="npshrDutyVal">-- m</h2>
+        </div>
+
+        <div class="calc-card">
+            <h4>NPSH Margin</h4>
+            <h2 id="npshMarginVal">-- m</h2>
+        </div>
+
+    </div>
+
+    <!-- ================= Status Badges ================= -->
+
+    <div class="risk-grid">
+
+        <div class="risk-card">
+            <h4>Operating Region</h4>
+            <span id="operatingRegionVal" class="risk low">--</span>
+        </div>
+
+        <div class="risk-card">
+            <h4>NPSH Status</h4>
+            <span id="npshStatusVal" class="risk low">--</span>
+        </div>
+
+        <div class="risk-card">
+            <h4>Overall Verdict</h4>
+            <span id="dutyVerdictVal" class="risk low">--</span>
+        </div>
+
+    </div>
+
+    <!-- ================= Recommendations ================= -->
+
+    <div class="recommendation-box">
+
+        <h3>
+            Duty Point Recommendations
+        </h3>
+
+        <ul id="dutyRecommendationList">
+            <li>Run the analysis to see recommendations.</li>
+        </ul>
+
+    </div>
+
+    <!-- ================= Buttons ================= -->
+
+    <div class="button-group">
+
+        <button id="analyzeDutyBtn">
+            <i class="fa-solid fa-crosshairs"></i>
+            Re-Analyze Duty Point
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================================== -->
 <!-- FINAL REPORT -->
 <!-- ====================================================== -->
 
@@ -2385,6 +2742,10 @@
 
 </div>
 
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- HydroNova JavaScript -->
 <script src="script.js"></script>
 
 </body>
